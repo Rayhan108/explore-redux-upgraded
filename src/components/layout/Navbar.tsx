@@ -1,5 +1,6 @@
 import Logo from "@/assets/Logo";
 import {  NavLink } from "react-router-dom";
+import { ModeToggle } from "../mood-toggle/mode-toggle";
 
 export default function Navbar() {
   return (
@@ -11,7 +12,8 @@ export default function Navbar() {
    <div className="font-serif text-xl ">
    <NavLink className="pr-8" to="/">Home</NavLink>
    <NavLink className="pr-8" to="/tasks">Tasks</NavLink>
-   <NavLink to="/users">Users</NavLink>
+   <NavLink className="pr-8" to="/users">Users</NavLink>
+   <ModeToggle/>
    </div>
     </nav>
   );
