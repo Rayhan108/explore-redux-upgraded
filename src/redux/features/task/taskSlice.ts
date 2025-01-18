@@ -17,7 +17,25 @@ const initialState:InitialState={
             dueDate: "2025-01-20",
             priority: "high",
             
-        }
+        },
+        {
+            id: "asdfghjks",
+            title: "init github repo",
+            description: "create test branch",
+            isComplete: false,
+            dueDate: "2025-01-20",
+            priority: "medium",
+            
+        },
+        {
+            id: "asdfghjks",
+            title: "init github repo",
+            description: "create test branch",
+            isComplete: false,
+            dueDate: "2025-01-20",
+            priority: "low",
+            
+        },
     ],
     filter:"all"
 }

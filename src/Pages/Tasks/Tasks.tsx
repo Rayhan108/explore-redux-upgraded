@@ -17,7 +17,7 @@ const Tasks = () => {
     
       <div className="space-y-5 mt-5">
      {
-        tasks?.map(task=><TaskCard/>)
+        tasks?.map(task=><TaskCard task={task}/>)
      }
       </div>
     </div>
