@@ -10,7 +10,7 @@ interface InitialState{
 const initialState:InitialState={
     tasks:[
         {
-            id: "asdfghjks",
+            id: "hjklsdfghjks",
             title: "Complete Redux Setup",
             description: "Set up Redux with middleware and state management",
             isComplete: false,
@@ -28,7 +28,7 @@ const initialState:InitialState={
             
         },
         {
-            id: "asdfghjks",
+            id: "sdfghjkhghjs",
             title: "init github repo",
             description: "create test branch",
             isComplete: false,
