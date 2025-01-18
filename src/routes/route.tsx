@@ -1,6 +1,6 @@
 
 import Main from "@/components/layout/Main";
-import Home from "@/Pages/Home/Home";
+// import Home from "@/Pages/Home/Home";
 import Tasks from "@/Pages/Tasks/Tasks";
 import Users from "@/Pages/Users/Users";
 
@@ -11,12 +11,12 @@ const routes = createBrowserRouter([
         path:"/",
         element:<Main/>,
         children:[
+            // {
+            //     index:true,
+            //     element:<Home/>
+            // },
             {
                 index:true,
-                element:<Home/>
-            },
-            {
-                path:"/tasks",
                 element:<Tasks/>
             },
             {

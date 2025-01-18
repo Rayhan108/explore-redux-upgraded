@@ -10,8 +10,8 @@ export default function Navbar() {
         
       </div>
    <div className="font-serif text-xl ">
-   <NavLink className="pr-8" to="/">Home</NavLink>
-   <NavLink className="pr-8" to="/tasks">Tasks</NavLink>
+   {/* <NavLink className="pr-8" to="/">Home</NavLink> */}
+   <NavLink className="pr-8" to="/">Tasks</NavLink>
    <NavLink className="pr-8" to="/users">Users</NavLink>
    <ModeToggle/>
    </div>
