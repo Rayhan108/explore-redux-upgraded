@@ -1,14 +1,18 @@
-import { Button } from "@/components/ui/button";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { deleteTask, toggleCompleteState } from "@/redux/features/task/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/types";
 import { Trash2 } from "lucide-react";
+import { UpdateTask } from "../UpdateTask";
 
 interface IProps{
     task:ITask;
 }
 
 export default function TaskCard({task}:IProps) {
+  const dispatch = useAppDispatch();
   return (
 <div className="border px-6 py-4 rounded-md shadow-sm">
   <div className="flex justify-between items-center">
@@ -21,16 +25,16 @@ export default function TaskCard({task}:IProps) {
         " bg-red-500":task.priority == "high",
       })}></div>
       {/* Task Title */}
-      <h1 className="text-lg font-semibold">{task.title}</h1>
+      <h1 className={cn("text-lg font-semibold",{"line-through":task.isComplete})}>{task.title}</h1>
     </div>
 
     {/* Action Buttons */}
     <div className="flex gap-3 items-center">
-      <Button variant="link" className="p-0 text-red-500">
-        Edit
-      </Button>
-      <Trash2 className="text-gray-500 cursor-pointer hover:text-red-500" />
-      <Checkbox className="cursor-pointer" />
+      <div  >
+        <UpdateTask task={task}/>
+      </div>
+      <Trash2 onClick={()=>dispatch(deleteTask(task.id))} className="text-gray-500 cursor-pointer hover:text-red-500" />
+      <Checkbox checked={task.isComplete} className="cursor-pointer"  onClick={()=>dispatch(toggleCompleteState(task.id))}/>
     </div>
   </div>
 
