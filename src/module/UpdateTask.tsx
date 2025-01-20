@@ -41,7 +41,12 @@ export function UpdateTask({ task }: IProps) {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    dispatch(updateTask(data as ITask));
+    dispatch(
+        updateTask({
+          ...data,
+          dueDate: data.dueDate ? new Date(data.dueDate).toISOString() : null, // Convert Date to string
+        } as ITask)
+      );
   };
 
   return (
