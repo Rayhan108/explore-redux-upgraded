@@ -96,7 +96,7 @@ export const selectTasks = (state: RootState) => {
   }else{
     return state.todo.tasks
   }
-  
+
 };
 export const selectFilter = (state: RootState) => {
   return state.todo.filter;
