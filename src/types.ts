@@ -5,7 +5,7 @@ export interface ITask {
     isComplete: boolean; // Indicates if the task is complete
     dueDate: string; // Due date for the task in ISO format
     priority: "low" | "medium" | "high"; // Priority level of the task
-    assignedTo?:string | null;
+    assignedTo:string | null;
 }
 export interface IUser{
     id:string;
