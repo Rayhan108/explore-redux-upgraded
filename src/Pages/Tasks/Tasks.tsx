@@ -1,14 +1,23 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AddTaskModal } from "@/module/AddTaskModal/AddTaskModal";
 import TaskCard from "@/module/Task/taskCard";
-import { selectTasks, updateFilter } from "@/redux/features/task/taskSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useGetTasksQuery } from "@/redux/api/baseApi";
+import { ITask } from "@/types";
 
 const Tasks = () => {
-  const tasks = useAppSelector(selectTasks);
+  // const tasks = useAppSelector(selectTasks);
   // const filter =useAppSelector(selectFilter)
-  console.log(tasks);
-const dispatch = useAppDispatch();
+//   console.log(tasks);
+// const dispatch = useAppDispatch();
+
+const {data,isLoading}=useGetTasksQuery(undefined);
+
+
+if(isLoading){
+  <p className="flex h-screen items-center">Loading...</p>
+}
+
+
   return (
     <>
       <h1 className="text-3xl flex justify-center items-center">Tasks List</h1>
@@ -18,17 +27,18 @@ const dispatch = useAppDispatch();
           <div className="mr-5">
           <Tabs defaultValue="all">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger onClick={()=>dispatch(updateFilter("all"))} value="all">All</TabsTrigger>
-          <TabsTrigger onClick={()=>dispatch(updateFilter("low"))} value="low">Low</TabsTrigger>
-          <TabsTrigger onClick={()=>dispatch(updateFilter("medium"))} value="medium">Medium</TabsTrigger>
-          <TabsTrigger onClick={()=>dispatch(updateFilter("high"))} value="high">High</TabsTrigger>
+        {/* onClick={()=>dispatch(updateFilter("all"))} */}
+          <TabsTrigger  value="all">All</TabsTrigger>
+          <TabsTrigger  value="low">Low</TabsTrigger>
+          <TabsTrigger value="medium">Medium</TabsTrigger>
+          <TabsTrigger  value="high">High</TabsTrigger>
         </TabsList>
       </Tabs>
           </div>
           <AddTaskModal />
         </div>
         <div className="space-y-5 mt-5">
-          {tasks?.map((task) => (
+          {!isLoading && data.tasks?.map((task:ITask) => (
             <TaskCard task={task} key={task.id} />
           ))}
         </div>

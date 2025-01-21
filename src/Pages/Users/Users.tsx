@@ -1,11 +1,9 @@
 import { AddUserModal } from "@/module/AddUserModal/AddUserModal";
-import { selectUsers } from "@/redux/features/user/userSlice";
-import { useAppSelector } from "@/redux/hook";
-import UserCard from "./userCard";
+
 
 
 const Users = () => {
-    const users= useAppSelector(selectUsers)
+    // const users= useAppSelector(selectUsers)
     return (
         <>
         <h1 className="text-3xl flex justify-center items-center">Tasks List</h1>
@@ -16,9 +14,9 @@ const Users = () => {
             <AddUserModal />
           </div>
           <div className="space-y-5 mt-5">
-            {users?.map((user) => (
+            {/* {users?.map((user) => (
               <UserCard user={user} key={user.id} />
-            ))}
+            ))} */}
           </div>
         </div>
       </>
