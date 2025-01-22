@@ -17,7 +17,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent,  SelectItem,  SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { useCreateTasksMutation } from "@/redux/api/baseApi";
+// import { useCreateTasksMutation } from "@/redux/api/baseApi";
+import { addTask } from "@/redux/features/task/taskSlice";
+import { selectUsers } from "@/redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { ITask } from "@/types";
 // import { addTask } from "@/redux/features/task/taskSlice";
 // import { selectUsers } from "@/redux/features/user/userSlice";
 // import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -31,17 +35,17 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 export function AddTaskModal() {
   const [open,setOpen]=useState(false);
     const form = useForm();
-    // const users = useAppSelector(selectUsers)
-    // const dispatch = useAppDispatch();
-    const [createTask,{data,isLoading}]= useCreateTasksMutation();
-    const onSubmit:SubmitHandler<FieldValues> =async (data)=>{
+    const users = useAppSelector(selectUsers)
+    const dispatch = useAppDispatch();
+    // const [createTask,{data,isLoading}]= useCreateTasksMutation();
+    const onSubmit:SubmitHandler<FieldValues> =(data)=>{
         console.log(data);
-        // dispatch(addTask(data as ITask));
-        const taskData={
-          ...data,
-          isComplete:false
-        }
-      const res = await  createTask(taskData).unwrap();
+        dispatch(addTask(data as ITask));
+      //   const taskData={
+      //     ...data,
+      //     isComplete:false
+      //   }
+      // const res = await  createTask(taskData).unwrap();
         setOpen(false);
         form.reset()
     }
@@ -160,9 +164,9 @@ export function AddTaskModal() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {/* {
+                  {
                     users.map((user)=>( <SelectItem key={user.id} value={user.id}>{user.name}</SelectItem>))
-                  } */}
+                  }
                  
            
                 </SelectContent>

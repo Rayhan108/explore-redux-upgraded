@@ -1,26 +1,29 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AddTaskModal } from "@/module/AddTaskModal/AddTaskModal";
 import TaskCard from "@/module/Task/taskCard";
-import { useGetTasksQuery } from "@/redux/api/baseApi";
+// import { useGetTasksQuery } from "@/redux/api/baseApi";
+import { selectFilter, selectTasks, updateFilter } from "@/redux/features/task/taskSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ITask } from "@/types";
 
 const Tasks = () => {
-  // const tasks = useAppSelector(selectTasks);
-  // const filter =useAppSelector(selectFilter)
-//   console.log(tasks);
-// const dispatch = useAppDispatch();
+  const tasks = useAppSelector(selectTasks);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const filter =useAppSelector(selectFilter)
+  console.log(tasks);
+const dispatch = useAppDispatch();
 
-const {data,isLoading}=useGetTasksQuery(undefined,{
-  pollingInterval:30000,
-  refetchOnFocus:true,
-  refetchOnMountOrArgChange:true,
-  refetchOnReconnect:true
-});
+// const {data,isLoading}=useGetTasksQuery(undefined,{
+//   pollingInterval:30000,
+//   refetchOnFocus:true,
+//   refetchOnMountOrArgChange:true,
+//   refetchOnReconnect:true
+// });
 
 
-if(isLoading){
-  <p className="flex h-screen items-center">Loading...</p>
-}
+// if(isLoading){
+//   <p className="flex h-screen items-center">Loading...</p>
+// }
 
 
   return (
@@ -32,20 +35,23 @@ if(isLoading){
           <div className="mr-5">
           <Tabs defaultValue="all">
         <TabsList className="grid w-full grid-cols-4">
-        {/* onClick={()=>dispatch(updateFilter("all"))} */}
-          <TabsTrigger  value="all">All</TabsTrigger>
-          <TabsTrigger  value="low">Low</TabsTrigger>
-          <TabsTrigger value="medium">Medium</TabsTrigger>
-          <TabsTrigger  value="high">High</TabsTrigger>
+     
+          <TabsTrigger    onClick={()=>dispatch(updateFilter("all"))}  value="all">All</TabsTrigger>
+          <TabsTrigger    onClick={()=>dispatch(updateFilter("low"))}  value="low">Low</TabsTrigger>
+          <TabsTrigger    onClick={()=>dispatch(updateFilter("medium"))} value="medium">Medium</TabsTrigger>
+          <TabsTrigger    onClick={()=>dispatch(updateFilter("high"))}  value="high">High</TabsTrigger>
         </TabsList>
       </Tabs>
           </div>
           <AddTaskModal />
         </div>
         <div className="space-y-5 mt-5">
-          {!isLoading && data.tasks?.map((task:ITask) => (
+          {tasks?.map((task:ITask) => (
             <TaskCard task={task} key={task.id} />
           ))}
+          {/* {!isLoading && data.tasks?.map((task:ITask) => (
+            <TaskCard task={task} key={task.id} />
+          ))} */}
         </div>
       </div>
     </>
