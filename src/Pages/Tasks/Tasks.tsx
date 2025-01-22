@@ -2,15 +2,13 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AddTaskModal } from "@/module/AddTaskModal/AddTaskModal";
 import TaskCard from "@/module/Task/taskCard";
 // import { useGetTasksQuery } from "@/redux/api/baseApi";
-import { selectFilter, selectTasks, updateFilter } from "@/redux/features/task/taskSlice";
+import { selectTasks, updateFilter } from "@/redux/features/task/taskSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ITask } from "@/types";
 
 const Tasks = () => {
   const tasks = useAppSelector(selectTasks);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const filter =useAppSelector(selectFilter)
-  console.log(tasks);
+
 const dispatch = useAppDispatch();
 
 // const {data,isLoading}=useGetTasksQuery(undefined,{

@@ -39,7 +39,7 @@ export function AddTaskModal() {
     const dispatch = useAppDispatch();
     // const [createTask,{data,isLoading}]= useCreateTasksMutation();
     const onSubmit:SubmitHandler<FieldValues> =(data)=>{
-        console.log(data);
+      
         dispatch(addTask(data as ITask));
       //   const taskData={
       //     ...data,

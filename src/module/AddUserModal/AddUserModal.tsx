@@ -27,7 +27,7 @@ export function AddUserModal() {
     const form = useForm();
     const dispatch = useAppDispatch();
     const onSubmit:SubmitHandler<FieldValues> = (data)=>{
-        console.log(data);
+     
         dispatch(addUser(data as IUser));
         setOpen(false);
         form.reset();

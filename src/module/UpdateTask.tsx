@@ -15,9 +15,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-// import { updateTask } from "@/redux/features/task/taskSlice";
+import { updateTask } from "@/redux/features/task/taskSlice";
 
-// import { useAppDispatch } from "@/redux/hook";
+
+import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/types";
 
 import { format } from "date-fns";
@@ -38,16 +39,16 @@ export function UpdateTask({ task }: IProps) {
     },
   });
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // dispatch(
-    //     updateTask({
-    //       ...data,
-    //       dueDate: data.dueDate ? new Date(data.dueDate).toISOString() : null, // Convert Date to string
-    //     } as ITask)
-    //   );
+    dispatch(
+        updateTask({
+          ...data,
+          dueDate: data.dueDate ? new Date(data.dueDate).toISOString() : null, // Convert Date to string
+        } as ITask)
+      );
   };
 
   return (
