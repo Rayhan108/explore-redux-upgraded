@@ -10,7 +10,12 @@ const Tasks = () => {
 //   console.log(tasks);
 // const dispatch = useAppDispatch();
 
-const {data,isLoading}=useGetTasksQuery(undefined);
+const {data,isLoading}=useGetTasksQuery(undefined,{
+  pollingInterval:30000,
+  refetchOnFocus:true,
+  refetchOnMountOrArgChange:true,
+  refetchOnReconnect:true
+});
 
 
 if(isLoading){
