@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent,  SelectItem,  SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useCreateTasksMutation } from "@/redux/api/baseApi";
 // import { addTask } from "@/redux/features/task/taskSlice";
 // import { selectUsers } from "@/redux/features/user/userSlice";
 // import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -32,9 +33,15 @@ export function AddTaskModal() {
     const form = useForm();
     // const users = useAppSelector(selectUsers)
     // const dispatch = useAppDispatch();
-    const onSubmit:SubmitHandler<FieldValues> = (data)=>{
+    const [createTask,{data,isLoading}]= useCreateTasksMutation();
+    const onSubmit:SubmitHandler<FieldValues> =async (data)=>{
         console.log(data);
         // dispatch(addTask(data as ITask));
+        const taskData={
+          ...data,
+          isComplete:false
+        }
+      const res = await  createTask(taskData).unwrap();
         setOpen(false);
         form.reset()
     }
